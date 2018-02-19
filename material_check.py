@@ -17,17 +17,17 @@ def main(folder):
     flats = input_files[30:130]
     first_projection = input_files[130]
     print(darks[0], darks[-1])
+    dark = np.median(np.dstack(
+        tifffile.imread(filename)
+        for filename in darks), axis=-1)
+    print(dark.shape)
     print(flats[0], flats[-1])
     print(first_projection)
-    dark_array = np.dstack(
+    flat = np.median(np.dstack(
         tifffile.imread(filename)
-        for filename in darks)
-    flat_array = np.dstack(
-        tifffile.imread(filename)
-        for filename in flats)
+        for filename in flats), axis=-1)
     first_projection = tifffile.imread(first_projection)
-    print(dark_array.shape)
-    print(flat_array.shape)
+    print(flat.shape)
     print(first_projection.shape)
 
 
